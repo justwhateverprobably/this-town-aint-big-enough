@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="This town ain't big enough..."
+run/main_scene="uid://c4ps0fctayjla"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -18,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
 
 [physics]
 

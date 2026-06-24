@@ -1,0 +1,50 @@
+[gd_resource type="Theme" format=3 uid="uid://kh64de4caahg"]
+
+[ext_resource type="FontFile" uid="uid://dyt7ekekv8obj" path="res://Fonts/Rye-Regular.ttf" id="1_7o52t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
+bg_color = Color(0.5075007, 0.43243378, 0.32577586, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
+bg_color = Color(0.57297724, 0.49209327, 0.3774105, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n45e2"]
+bg_color = Color(0.43798414, 0.3704653, 0.27437326, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 15
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[resource]
+Button/constants/outline_size = 10
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_7o52t")
+Button/styles/hover = SubResource("StyleBoxFlat_28flt")
+Button/styles/normal = SubResource("StyleBoxFlat_1ehe0")
+Button/styles/pressed = SubResource("StyleBoxFlat_n45e2")
+Label/constants/outline_size = 10
+Label/font_sizes/font_size = 60
+Label/fonts/font = ExtResource("1_7o52t")

@@ -1,0 +1,115 @@
+[gd_scene format=3 uid="uid://on1ibi3tll48"]
+
+[ext_resource type="Theme" uid="uid://kh64de4caahg" path="res://Themes/Western.tres" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://peg8nqakpv65" path="res://Scripts/game_manager.gd" id="1_wowpa"]
+[ext_resource type="PackedScene" uid="uid://bfkmihritu11l" path="res://Scenes/health_bar.tscn" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://dm1qbfp8c0lwm" path="res://Scripts/player.gd" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://b47iorsrrhpfj" path="res://Scripts/enemy.gd" id="4_wowpa"]
+
+[sub_resource type="DrawableTexture2D" id="DrawableTexture2D_3dryh"]
+
+[sub_resource type="DrawableTexture2D" id="DrawableTexture2D_wowpa"]
+
+[node name="Game" type="Node2D" unique_id=1061186701]
+script = ExtResource("1_wowpa")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1579210721]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.641934, 0.641934, 0.641934, 1)
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=1959054803]
+
+[node name="Control" type="Control" parent="UILayer" unique_id=279353401]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerUI" type="MarginContainer" parent="UILayer/Control" unique_id=1711663988]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -500.0
+offset_top = -100.0
+offset_right = 500.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UILayer/Control/PlayerUI" unique_id=33314646]
+layout_mode = 2
+theme_override_constants/separation = 600
+
+[node name="FireButton" type="Button" parent="UILayer/Control/PlayerUI/HBoxContainer" unique_id=1689770729]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_ebmjs")
+text = "Fire!"
+
+[node name="SpinButton" type="Button" parent="UILayer/Control/PlayerUI/HBoxContainer" unique_id=806079862]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_ebmjs")
+text = "Spin!"
+
+[node name="PlayerHealth" parent="UILayer/Control/PlayerUI" unique_id=469106140 instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="EnemyUI" type="MarginContainer" parent="UILayer/Control" unique_id=1397848688]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.0
+offset_right = 82.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="EnemyHealth" parent="UILayer/Control/EnemyUI" unique_id=1885373687 instance=ExtResource("2_qxrlw")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DebugLog" type="Label" parent="UILayer/Control" unique_id=967823391]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Debug"
+
+[node name="Player" type="Sprite2D" parent="." unique_id=2123670198]
+self_modulate = Color(0.9683017, 0.1750767, 0, 1)
+position = Vector2(408, 86)
+scale = Vector2(1.09375, 1.09375)
+texture = SubResource("DrawableTexture2D_3dryh")
+script = ExtResource("3_3dryh")
+
+[node name="Enemy" type="Sprite2D" parent="." unique_id=548152407]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(399, 555)
+texture = SubResource("DrawableTexture2D_wowpa")
+script = ExtResource("4_wowpa")
+
+[connection signal="pressed" from="UILayer/Control/PlayerUI/HBoxContainer/FireButton" to="." method="_on_fire_button_pressed"]
+[connection signal="pressed" from="UILayer/Control/PlayerUI/HBoxContainer/SpinButton" to="." method="_on_spin_button_pressed"]

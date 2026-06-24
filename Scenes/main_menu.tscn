@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://c4ps0fctayjla"]
+
+[ext_resource type="Script" uid="uid://dqiiofli5ldq8" path="res://Scripts/main_menu.gd" id="1_1ehe0"]
+[ext_resource type="Theme" uid="uid://kh64de4caahg" path="res://Themes/Western.tres" id="2_ce3w2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xwjkd"]
+bg_color = Color(0.42809555, 0.36097273, 0.2663668, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.2933655, 0.24360406, 0.17333114, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control" unique_id=2098505615]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ehe0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1185045408]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3270941, 0.23244351, 0.08764022, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=291766781]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xwjkd")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1107823124]
+layout_mode = 2
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1400382447]
+layout_mode = 2
+size_flags_vertical = 8
+offset_transform_enabled = true
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1136465333]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_ce3w2")
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=587586777]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("2_ce3w2")
+text = "Quit"
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer" unique_id=530756255]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_top = 30
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer2" unique_id=818894585]
+layout_mode = 2
+size_flags_vertical = 0
+offset_transform_position = Vector2(0, 40)
+offset_transform_visual_only = false
+theme = ExtResource("2_ce3w2")
+theme_override_font_sizes/font_size = 90
+text = "Main Menu"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bfkmihritu11l"]
+
+[ext_resource type="Texture2D" uid="uid://da3bwe1b0m7kb" path="res://Graphics/heart.png" id="1_78m4n"]
+
+[node name="HealthBar" type="HBoxContainer" unique_id=469106140]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="." unique_id=1741980632]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+
+[node name="Sprite2D3" type="Sprite2D" parent="Panel" unique_id=1629432669]
+position = Vector2(26.000002, 26.000002)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_78m4n")
+
+[node name="Panel2" type="Panel" parent="." unique_id=848990763]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+
+[node name="Sprite2D3" type="Sprite2D" parent="Panel2" unique_id=249873946]
+position = Vector2(26.000002, 26.000002)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_78m4n")
+
+[node name="Panel3" type="Panel" parent="." unique_id=2070449911]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(52, 52)
+layout_mode = 2
+
+[node name="Sprite2D3" type="Sprite2D" parent="Panel3" unique_id=1921962665]
+position = Vector2(26.000002, 26.000002)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_78m4n")
