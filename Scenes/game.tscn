@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://peg8nqakpv65" path="res://Scripts/game_manager.gd" id="1_wowpa"]
 [ext_resource type="PackedScene" uid="uid://bfkmihritu11l" path="res://Scenes/health_bar.tscn" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://dm1qbfp8c0lwm" path="res://Scripts/player.gd" id="3_3dryh"]
+[ext_resource type="Script" uid="uid://dyrir34tslk4g" path="res://Scenes/entities.gd" id="4_i6g32"]
 [ext_resource type="Script" uid="uid://b47iorsrrhpfj" path="res://Scripts/enemy.gd" id="4_wowpa"]
 
 [sub_resource type="DrawableTexture2D" id="DrawableTexture2D_3dryh"]
@@ -98,14 +99,17 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Debug"
 
-[node name="Player" type="Sprite2D" parent="." unique_id=2123670198]
+[node name="Entities" type="Node2D" parent="." unique_id=884739589]
+script = ExtResource("4_i6g32")
+
+[node name="Player" type="Sprite2D" parent="Entities" unique_id=2123670198]
 self_modulate = Color(0.9683017, 0.1750767, 0, 1)
 position = Vector2(408, 86)
 scale = Vector2(1.09375, 1.09375)
 texture = SubResource("DrawableTexture2D_3dryh")
 script = ExtResource("3_3dryh")
 
-[node name="Enemy" type="Sprite2D" parent="." unique_id=548152407]
+[node name="Enemy" type="Sprite2D" parent="Entities" unique_id=548152407]
 self_modulate = Color(0, 0, 1, 1)
 position = Vector2(399, 555)
 texture = SubResource("DrawableTexture2D_wowpa")
