@@ -2,25 +2,33 @@ extends Sprite2D
 
 var chamber := [true, true, true, false, false, false]
 var health := 3
-var current_shot := 0
-signal on_enemy_shoot_action
+@onready var healthbar = $"../../UILayer/Control/EnemyUI/EnemyHealth"
+@onready var player = $"../Player"
+@onready var entities = $".."
+@onready var info = $"../../UILayer/Control/InfoText"
 
 func shoot_or_spin():
 	# IMPLEMENT ACTION DELAY SO ENEMY TURN ISN'T IMMEDIATE
 	if randf() < 0.5:
 		shoot()
-		on_enemy_shoot_action.emit()
 	else:
 		spin()
 	
 
 func shoot():
-	# call shoot function on parent node passing in relevant data to be modified
-	$"..".shoot(chamber, current_shot, health)
-	$"../../UILayer/Control/DebugLog".text = "enemy took shoot action"
-	# increment shot (move to next chamber)
-	current_shot += 1
+	if chamber[0] == true:
+		player.update_health(-1)
+		chamber[0] = false
+	else:
+		chamber[0] = false
+		
+	chamber = entities.advance_chamber(chamber)
+	info.text = "Opponent took shoot action"
 	
 func spin():
-	$"..".spin(chamber)
-	$"../../UILayer/Control/DebugLog".text = "enemy took spin action"
+	chamber = entities.spin_chamber(chamber)
+	info.text = "Opponent took spin action"
+
+func update_health(increment):
+	health = entities.update_health(health, increment)
+	healthbar.remove_child(healthbar.get_child(0))
