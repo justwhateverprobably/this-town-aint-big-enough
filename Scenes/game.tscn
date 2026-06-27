@@ -3,9 +3,12 @@
 [ext_resource type="Theme" uid="uid://kh64de4caahg" path="res://Themes/Western.tres" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://peg8nqakpv65" path="res://Scripts/game_manager.gd" id="1_wowpa"]
 [ext_resource type="PackedScene" uid="uid://bfkmihritu11l" path="res://Scenes/health_bar.tscn" id="2_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://2oqabibg6h1d" path="res://Graphics/bg.png" id="2_v158k"]
 [ext_resource type="Script" uid="uid://dm1qbfp8c0lwm" path="res://Scripts/player.gd" id="3_3dryh"]
 [ext_resource type="Script" uid="uid://dyrir34tslk4g" path="res://Scenes/entities.gd" id="4_i6g32"]
 [ext_resource type="Script" uid="uid://b47iorsrrhpfj" path="res://Scripts/enemy.gd" id="4_wowpa"]
+[ext_resource type="Texture2D" uid="uid://delc8d1hrsvse" path="res://Graphics/chamber.png" id="7_v158k"]
+[ext_resource type="Texture2D" uid="uid://d0luyc8ds7683" path="res://Graphics/shot_marker.png" id="9_h4fw4"]
 
 [sub_resource type="DrawableTexture2D" id="DrawableTexture2D_3dryh"]
 
@@ -14,10 +17,10 @@
 [node name="Game" type="Node2D" unique_id=1061186701]
 script = ExtResource("1_wowpa")
 
-[node name="BG" type="ColorRect" parent="." unique_id=1579210721]
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0.641934, 0.641934, 0.641934, 1)
+[node name="bg" type="Sprite2D" parent="." unique_id=843142660]
+position = Vector2(588.5, 321.5)
+scale = Vector2(0.9435612, 0.66432863)
+texture = ExtResource("2_v158k")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=1959054803]
 
@@ -41,7 +44,7 @@ offset_top = -100.0
 offset_right = 500.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UILayer/Control/PlayerUI" unique_id=33314646]
 layout_mode = 2
@@ -70,33 +73,48 @@ size_flags_vertical = 4
 
 [node name="EnemyUI" type="MarginContainer" parent="UILayer/Control" unique_id=1397848688]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -82.0
-offset_right = 82.0
-offset_bottom = 52.0
-grow_horizontal = 2
-theme_override_constants/margin_top = 30
+offset_right = 164.0
+offset_bottom = 82.0
+theme_override_constants/margin_left = 360
+theme_override_constants/margin_top = 300
 
 [node name="EnemyHealth" parent="UILayer/Control/EnemyUI" unique_id=1885373687 instance=ExtResource("2_qxrlw")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="InfoText" type="Label" parent="UILayer/Control" unique_id=967823391]
+[node name="MarginContainer" type="MarginContainer" parent="UILayer/Control" unique_id=1317546911]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 150
+
+[node name="MarkerLabel" type="Label" parent="UILayer/Control/MarginContainer" unique_id=1297565861]
+layout_mode = 2
+theme = ExtResource("1_ebmjs")
+theme_override_font_sizes/font_size = 15
+text = "next shot"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UILayer/Control" unique_id=872068716]
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -83.0
+offset_right = 83.0
+offset_bottom = 40.0
 grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/margin_top = 25
+
+[node name="InfoText" type="Label" parent="UILayer/Control/MarginContainer2" unique_id=967823391]
+layout_mode = 2
+theme = ExtResource("1_ebmjs")
+theme_override_font_sizes/font_size = 30
 text = "Your turn!"
 horizontal_alignment = 1
 
@@ -105,19 +123,50 @@ script = ExtResource("4_i6g32")
 
 [node name="Player" type="Sprite2D" parent="Entities" unique_id=2123670198]
 self_modulate = Color(0.9683017, 0.1750767, 0, 1)
-position = Vector2(408, 86)
-scale = Vector2(1.09375, 1.09375)
+position = Vector2(445, 379)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("DrawableTexture2D_3dryh")
 script = ExtResource("3_3dryh")
 
 [node name="Enemy" type="Sprite2D" parent="Entities" unique_id=548152407]
 self_modulate = Color(0, 0, 1, 1)
-position = Vector2(399, 555)
+position = Vector2(716, 590)
 texture = SubResource("DrawableTexture2D_wowpa")
 script = ExtResource("4_wowpa")
 
 [node name="EnemyActionTimer" type="Timer" parent="." unique_id=1900847894]
 one_shot = true
+
+[node name="PlayerGun" type="Node2D" parent="." unique_id=2023371237]
+
+[node name="Cylinder" type="Sprite2D" parent="PlayerGun" unique_id=608397873]
+position = Vector2(965, 345)
+scale = Vector2(2, 2)
+texture = ExtResource("7_v158k")
+
+[node name="Chamber0" type="Marker2D" parent="PlayerGun" unique_id=1010362175]
+position = Vector2(964, 252)
+
+[node name="Chamber1" type="Marker2D" parent="PlayerGun" unique_id=767321891]
+position = Vector2(1049, 301)
+
+[node name="Chamber2" type="Marker2D" parent="PlayerGun" unique_id=952205922]
+position = Vector2(1050, 396)
+
+[node name="Chamber3" type="Marker2D" parent="PlayerGun" unique_id=963823056]
+position = Vector2(965, 445)
+
+[node name="Chamber4" type="Marker2D" parent="PlayerGun" unique_id=1498253927]
+position = Vector2(882, 396)
+
+[node name="Chamber5" type="Marker2D" parent="PlayerGun" unique_id=1887813362]
+position = Vector2(881, 301)
+
+[node name="Bullets" type="Node2D" parent="." unique_id=1595386666]
+
+[node name="ShotMarker" type="Sprite2D" parent="." unique_id=324733823]
+position = Vector2(965, 156)
+texture = ExtResource("9_h4fw4")
 
 [connection signal="pressed" from="UILayer/Control/PlayerUI/HBoxContainer/FireButton" to="." method="_on_fire_button_pressed"]
 [connection signal="pressed" from="UILayer/Control/PlayerUI/HBoxContainer/SpinButton" to="." method="_on_spin_button_pressed"]

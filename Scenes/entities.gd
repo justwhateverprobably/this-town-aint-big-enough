@@ -1,28 +1,28 @@
 extends Node2D
 
 
-func advance_chamber(chamber):
-	# Number of chambers in the cylinder
-	var n = chamber.size()
+func advance_cylinder(cylinder):
+	# Number of cylinders in the cylinder
+	var n = cylinder.size()
 	# Save the first element (this will move to the end)
-	var first = chamber[0]
+	var last = cylinder[n-1]
 	# # Shift everything left by one position
-	for i in range(0, n - 1):
-		chamber[i] = chamber[i + 1]
+	for i in range(n-1, 0, -1):
+		cylinder[i] = cylinder[i - 1]
 	# Move the original first element to the end
-	chamber[n - 1] = first
+	cylinder[0] = last
 	
-	return chamber
+	return cylinder
 	
-func spin_chamber(chamber):
+func spin_cylinder(cylinder):
 	# Decide how many positions to rotate (0 to max-1)
-	var increment = randi_range(0, len(chamber) - 1)
+	var increment = randi_range(0, len(cylinder) - 1)
   
 	# Repeat single-step rotation "increment" times
 	for i in range(increment):
-		chamber = advance_chamber(chamber)
+		cylinder = advance_cylinder(cylinder)
 		
-	return chamber
+	return cylinder
 	
 func update_health(health, increment):
 	health += increment

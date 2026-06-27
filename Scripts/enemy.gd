@@ -1,11 +1,11 @@
 extends Sprite2D
 
-var chamber := [true, true, true, false, false, false]
+var cylinder := [true, true, true, false, false, false]
 var health := 3
 @onready var healthbar = $"../../UILayer/Control/EnemyUI/EnemyHealth"
 @onready var player = $"../Player"
 @onready var entities = $".."
-@onready var info = $"../../UILayer/Control/InfoText"
+@onready var info = $"../../UILayer/Control/MarginContainer2/InfoText"
 
 func shoot_or_spin():
 	# IMPLEMENT ACTION DELAY SO ENEMY TURN ISN'T IMMEDIATE
@@ -16,17 +16,15 @@ func shoot_or_spin():
 	
 
 func shoot():
-	if chamber[0] == true:
+	if cylinder[0] == true:
 		player.update_health(-1)
-		chamber[0] = false
-	else:
-		chamber[0] = false
+		cylinder[0] = false
 		
-	chamber = entities.advance_chamber(chamber)
+	cylinder = entities.advance_cylinder(cylinder)
 	info.text = "Opponent took shoot action"
 	
 func spin():
-	chamber = entities.spin_chamber(chamber)
+	cylinder = entities.spin_cylinder(cylinder)
 	info.text = "Opponent took spin action"
 
 func update_health(increment):

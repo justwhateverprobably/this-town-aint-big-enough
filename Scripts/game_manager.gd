@@ -11,7 +11,7 @@ extends Node2D
 
 @onready var player = $Entities/Player
 @onready var enemy = $Entities/Enemy
-@onready var info = $UILayer/Control/InfoText
+@onready var info = $UILayer/Control/MarginContainer2/InfoText
 @onready var delay_timer = $EnemyActionTimer
 
 enum GameState {
